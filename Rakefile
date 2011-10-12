@@ -7,14 +7,12 @@ rescue LoadError
 end
 
 require 'rake'
-require 'rake/testtask'
 require 'rdoc/task'
+require 'rspec/core/rake_task'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = false
+RSpec::Core::RakeTask.new(:rspec) do |spec|
+  spec.pattern = 'test/*_spec.rb'
+  spec.rspec_opts = ['--backtrace', '--color']
 end
 
 task :default => :test

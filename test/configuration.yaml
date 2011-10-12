@@ -1,0 +1,13 @@
+hash1:
+  hash2:
+    key12a: value12a
+    key12b: value12b
+  array2:
+    - key123a: value123a
+      key123b: value123b
+    - value12a
+
+array1:
+  - value1a
+  - value1b
+
