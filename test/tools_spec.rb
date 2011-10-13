@@ -7,12 +7,6 @@ def config_path
 end
 
 describe Summit::Tools::Configuration do
-  describe "#doit" do
-    it "returns 2x value" do
-      @config.doit(2).should == 4
-    end
-  end
-
   describe "#new" do
     it "recursively symbolizes keys" do
       @config.hash1[:hash2][:key12a].should == 'value12a'
@@ -26,7 +20,55 @@ describe Summit::Tools::Configuration do
     end
   end
 
-  before(:all) do
+  # delegators for Hash methods
+  describe "#[]" do
+    it "acts like Hash" do
+      @config[:hash1].class.should == Hash
+    end
+  end
+
+  describe "#[]=" do
+    it "acts like Hash" do
+      @config[:new] = 1
+      @config[:new].should == 1
+    end
+  end
+
+  describe "#length" do
+    it "acts like Hash" do
+      orig_length = @config.length
+      @config[:new] = 1
+      @config.length.should == orig_length + 1
+    end
+  end
+
+  describe "#each" do
+    it "acts like Hash" do
+      enumerator = @config.each
+      enumerator.class.should eq(Enumerable::Enumerator)
+      [Hash, Array].include?(enumerator.next.class).should == true
+    end
+  end
+
+  describe "#collect" do
+    it "acts like Hash" do
+      @config.collect.length.should == 2
+    end
+  end
+
+  describe "#keys" do
+    it "acts like Hash" do
+      @config.keys.should == [:array1, :hash1]
+    end
+  end
+
+  describe "#values" do
+    it "acts like Hash" do
+      @config.values.length.should == 2
+    end
+  end
+
+  before(:each) do
     @config = Summit::Tools::Configuration.new config_path
   end
 
