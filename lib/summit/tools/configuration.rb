@@ -1,13 +1,14 @@
+require 'forwardable'
+
 class Summit::Tools::Configuration
   attr_reader :configuration
+
+  extend Enumerable, Forwardable
+  def_delegators :@configuration, :[], :[]=, :length, :each, :collect, :keys, :values
 
   def initialize(config_file)
     @configuration = symbolize_keys!(YAML.load(File.new(config_file).read))
     configuration.each_value{|value| value.is_a? Hash and symbolize_keys!(value)}
-  end
-
-  def doit(x)
-    return x*2
   end
 
   def method_missing(method, *args)
