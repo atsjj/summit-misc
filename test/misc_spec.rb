@@ -6,7 +6,7 @@ def config_path
   return File.join(File.expand_path(File.dirname(__FILE__)), 'configuration.yaml')
 end
 
-describe Summit::Tools::Configuration do
+describe Summit::Misc::Configuration do
   describe "#new" do
     it "recursively symbolizes keys" do
       @config.hash1[:hash2][:key12a].should == 'value12a'
@@ -69,7 +69,7 @@ describe Summit::Tools::Configuration do
   end
 
   before(:each) do
-    @config = Summit::Tools::Configuration.new config_path
+    @config = Summit::Misc::Configuration.new config_path
   end
 
 end

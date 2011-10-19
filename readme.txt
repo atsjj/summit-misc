@@ -4,9 +4,9 @@ $ bundle install
 
 # Build the gem:
 
-Update the version if necessary (edit lib/summit/tools/version.rb).
+Update the version if necessary (edit lib/summit/misc/version.rb).
 
-$ gem build summit_tools.gemspec
+$ gem build summit-misc.gemspec
 
 # release management
 

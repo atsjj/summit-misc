@@ -1,6 +1,6 @@
 require 'forwardable'
 
-class Summit::Tools::Configuration
+class Summit::Misc::Configuration
   attr_reader :configuration
 
   extend Enumerable, Forwardable

@@ -1,5 +1,5 @@
 module Summit
-  module Tools
+  module Misc
     VERSION = "1.0.1"
   end
 end

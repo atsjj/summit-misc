@@ -1,4 +1,4 @@
 module Summit
 end
 
-require 'summit/tools'
+require 'summit/misc'
