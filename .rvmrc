@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ruby_string="ruby-1.8.7-p352"
-gemset_name="summit-tools"
+gemset_name="summit-misc"
 
 if rvm list strings | grep -q "${ruby_string}" ; then
   # load or create the specified environment
