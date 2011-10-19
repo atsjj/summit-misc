@@ -15,11 +15,11 @@ RSpec::Core::RakeTask.new(:rspec) do |spec|
   spec.rspec_opts = ['--backtrace', '--color']
 end
 
-task :default => :test
+task :default => :rspec
 
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'SummitTools'
+  rdoc.title    = 'SummitMisc'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
