@@ -65,28 +65,38 @@ module Summit::Misc::ActiveRecordSpec
   end
 
   def validate_length_of(obj, field, params={})
-    if params[:maximum]
-      # set field to max length, should be OK
-      obj.send "#{field}=", 'x'*params[:maximum]
-      obj.valid?
-      obj.errors[field.to_sym].length.should be(0), "#{field} length #{params[:maximum]} should be valid but is not."
+    params.each do |key, value|
+      if key == :maximum
+        # set field to max length, should be OK
+        obj.send "#{field}=", 'x'*value
+        obj.valid?
+        obj.errors[field.to_sym].length.should be(0), "#{field} length #{value} should be valid but is not."
 
-      # set field to 1 more than max length, should be an error
-      obj.send "#{field}=", 'x'*(params[:maximum]+1)
-      obj.valid?
-      obj.errors[field.to_sym].length.should be > 0, "#{field} length #{params[:maximum] + 1} should not be valid but is."
-    end
+        # set field to 1 more than max length, should be an error
+        obj.send "#{field}=", 'x'*(value+1)
+        obj.valid?
+        obj.errors[field.to_sym].length.should be > 0, "#{field} length #{value + 1} should not be valid but is."
+      elsif key == :minimum
+        # set field to min length, should be OK
+        obj.send "#{field}=", 'x'*value
+        obj.valid?
+        obj.errors[field.to_sym].length.should be(0), "#{field} length #{value} should be valid but is not."
 
-    if params[:minimum]
-      # set field to min length, should be OK
-      obj.send "#{field}=", 'x'*params[:minimum]
-      obj.valid?
-      obj.errors[field.to_sym].length.should be(0), "#{field} length #{params[:minimum]} should be valid but is not."
-
-      # set field to 1 less than max length, should be an error
-      obj.send "#{field}=", 'x'*(params[:minimum]-1)
-      obj.valid?
-      obj.errors[field.to_sym].length.should be > 0, "#{field} length #{params[:minimum] - 1} should not be valid but is."
+        # set field to 1 less than max length, should be an error
+        obj.send "#{field}=", 'x'*(value-1)
+        obj.valid?
+        obj.errors[field.to_sym].length.should be > 0, "#{field} length #{value - 1} should not be valid but is."
+      elsif key == :allow_nil
+        obj.send "#{field}=", nil
+        obj.valid?
+        if value
+          obj.errors[field.to_sym].length.should be == 0, "#{field} = nil should be valid but is not."
+        else
+          obj.errors[field.to_sym].length.should be > 0, "#{field} = nil should not be valid but is."
+        end
+      else
+        key.should_not eql(key), "Unknown parameter: #{key}"
+      end
     end
   end
 end
