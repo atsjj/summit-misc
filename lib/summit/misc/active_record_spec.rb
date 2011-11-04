@@ -6,6 +6,15 @@ module Summit::Misc::ActiveRecordSpec
     end
   end
 
+  def validate_attr_accessible(obj, field, value)
+    # verify original value is not equal to new value
+    orig_value = obj.send field
+    orig_value.should_not eql(value), "Value of #{field} must be set to a value other than '#{value}' before the test of attr_protected."
+
+    obj.attributes = { field => value }
+    obj.send("#{field}").should eql(value), "Value of #{field} should have changed with mass assignment but did not."
+  end
+
   def validate_attr_protected(obj, field, value)
     # verify original value is not equal to new value
     orig_value = obj.send field
