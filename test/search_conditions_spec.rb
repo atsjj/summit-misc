@@ -22,6 +22,24 @@ describe Summit::Misc::SearchConditions do
       conditions.to_a.should == ["age > ?", 18]
     end
 
+    it 'only returns conditions for which it has a param' do
+      config = configs(:min_age, :active)
+      conditions = SearchConditions.new config, {:min_age => '18'}
+      conditions.to_a.should == ["age > ?", 18]
+    end
+
+    it 'returns and empty array if there are no params' do
+      config = configs(:min_age, :active)
+      conditions = SearchConditions.new config, {}
+      conditions.to_a.should == []
+    end
+
+    it 'returns an empty array if params is nil' do
+      config = configs(:min_age, :active)
+      conditions = SearchConditions.new config, nil
+      conditions.to_a.should == []
+    end
+
     it "is correct with more than one condition" do
       config = configs(:min_age, :active)
       conditions = SearchConditions.new config, @params
