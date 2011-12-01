@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    summit-misc (1.3.0)
+    summit-misc (1.4.0)
 
 GEM
   remote: http://rubygems.org/
