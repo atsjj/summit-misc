@@ -1,13 +1,31 @@
-# Setup/install:
+# Status
 
+production
+
+# Dependencies
+
+ruby, rubygems, bundler, git, rvm (optional)
+
+# Installation
+
+Install dependencies.
+Clone the git project.
+
+# Setup
+
+$ rake setup
 $ bundle install
 
-# Build the gem:
+# Build
 
-Update the version if necessary (edit lib/summit/misc/version.rb).
+$ rake build
 
-$ gem build summit-misc.gemspec
+# Deploy
 
-# release management
+# Release management
 
-gitflow and semantic versioning are used.
+gitflow and semantic versioning
+
+# Tests
+
+$ rake test

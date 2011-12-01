@@ -10,7 +10,9 @@ require 'rake'
 require 'rdoc/task'
 require 'rspec/core/rake_task'
 
-RSpec::Core::RakeTask.new(:rspec) do |spec|
+$GEMSERVER='http://summit:Nip4s123@gems.insummit.com/'
+
+RSpec::Core::RakeTask.new(:test) do |spec|
   spec.pattern = 'test/*_spec.rb'
   spec.rspec_opts = ['--backtrace', '--color']
 end
@@ -23,4 +25,16 @@ RDoc::Task.new do |rdoc|
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+desc 'Initial project setup'
+task :setup do
+  system 'bundle install'
+  puts 'Setup completed.'
+end
+
+desc 'Build the project'
+task :build do
+  system 'gem build summit-misc.gemspec'
+  puts 'Built.'
 end
