@@ -56,7 +56,7 @@ describe Summit::Misc::Configuration do
 
   describe "#keys" do
     it "acts like Hash" do
-      @config.keys.should == [:array1, :hash1]
+      @config.keys.sort{|x,y| x.to_s <=> y.to_s}.should == [:array1, :hash1]
     end
   end
 
