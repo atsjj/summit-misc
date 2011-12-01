@@ -19,8 +19,10 @@ class Summit::Misc::SearchConditions
   private
 
   def add_condition(param_name, where_str, func)
-    @condition_terms.push where_str
-    @condition_values.push func.call(@params[param_name])
+    if @params and @params.has_key? param_name
+      @condition_terms.push where_str
+      @condition_values.push func.call(@params[param_name])
+    end
   end
 
 end
