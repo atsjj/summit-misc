@@ -18,7 +18,6 @@ Clone the git project.
 # Setup
 
 $ rake setup
-$ bundle install
 
 # Build
 
