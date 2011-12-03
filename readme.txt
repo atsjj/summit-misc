@@ -1,3 +1,7 @@
+# Overview
+
+A ruby gem that contains various classes used by other projects.
+
 # Status
 
 production
