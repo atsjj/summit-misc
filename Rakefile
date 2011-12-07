@@ -10,8 +10,6 @@ require 'rake'
 require 'rdoc/task'
 require 'rspec/core/rake_task'
 
-$GEMSERVER='http://summit:Nip4s123@gems.insummit.com/'
-
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'SummitMisc'
