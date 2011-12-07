@@ -12,13 +12,6 @@ require 'rspec/core/rake_task'
 
 $GEMSERVER='http://summit:Nip4s123@gems.insummit.com/'
 
-RSpec::Core::RakeTask.new(:test) do |spec|
-  spec.pattern = 'test/*_spec.rb'
-  spec.rspec_opts = ['--backtrace', '--color']
-end
-
-task :default => :rspec
-
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'SummitMisc'
@@ -26,6 +19,13 @@ RDoc::Task.new do |rdoc|
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+RSpec::Core::RakeTask.new(:test) do |spec|
+  spec.pattern = 'test/*_spec.rb'
+  spec.rspec_opts = ['--backtrace', '--color']
+end
+
+task :default => :test
 
 desc 'Initial project setup'
 task :setup do
