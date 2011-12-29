@@ -62,16 +62,36 @@ module Summit::Misc::ActiveRecordSpec
   end
 
   def validate_presence_of(obj, field, value, params={})
-    obj.send "#{field}=", nil
-    obj.valid?
-    # the object might set the field in a callback
-    if obj.send(field).nil?
-      obj.errors[field.to_sym].length.should be > 0, "#{field} = nil should not be valid but is."
+    def test_presence_of(the_obj, field, value)
+      the_obj.send "#{field}=", nil
+      the_obj.valid?
+      # the object might set the field in a callback
+      if the_obj.send(field).nil?
+        the_obj.errors[field.to_sym].length.should be > 0, "#{field} = nil should not be valid but is."
+      end
+
+      the_obj.send "#{field}=", value
+      the_obj.valid?
+      the_obj.errors[field.to_sym].length.should be(0), "#{field} = #{value} should be valid but is not."
     end
 
-    obj.send "#{field}=", value
-    obj.valid?
-    obj.errors[field.to_sym].length.should be(0), "#{field} = #{value} should be valid but is not."
+    # validate on create
+    if params.has_key?(:on) == false or [:save, :create].include?(params[:on])
+      new_obj = (obj.new_record? ? obj : obj.class.new.initialize_dup(obj))
+      test_presence_of(new_obj, field, value)
+    end
+
+    # validate on save
+    if params.has_key?(:on) == false or [:save, :update].include?(params[:on])
+      existing_obj = obj
+      if obj.new_record?
+        existing_obj = obj.class.new
+        existing_obj.initialize_dup(obj)
+        existing_obj.send "#{field}=", value
+        existing_obj.save! :validate => false
+      end
+      test_presence_of(existing_obj, field, value)
+    end
   end
 
   def validate_length_of(obj, field, params={})
