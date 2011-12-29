@@ -45,6 +45,7 @@ module Summit::Misc::ActiveRecordSpec
     obj.errors[field.to_sym].length.should be(0), "#{field} = #{lower_value} should be valid but is not."
 
     existing_obj = obj.class.new
+    existing_obj.initialize_dup obj
     existing_obj.send("#{field}=", lower_value)
     existing_obj.save :validate => false
 
