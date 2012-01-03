@@ -77,7 +77,11 @@ module Summit::Misc::ActiveRecordSpec
 
     # validate on create
     if params.has_key?(:on) == false or [:save, :create].include?(params[:on])
-      new_obj = (obj.new_record? ? obj : obj.class.new.initialize_dup(obj))
+      new_obj = obj
+      unless (obj.new_record?)
+        new_obj = obj.class.new
+        new_obj.initialize_dup(obj)
+      end
       test_presence_of(new_obj, field, value)
     end
 
