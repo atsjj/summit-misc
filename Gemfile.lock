@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    summit-misc (1.4.0)
+    summit-misc (1.4.2)
 
 GEM
   remote: http://summit:Nip4s123@gems.insummit.com/
