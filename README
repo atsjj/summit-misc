@@ -1,34 +1,36 @@
-# Overview
+= Summit Misc
+
+== Overview
 
 A ruby gem that contains various classes used by other projects.
 
-# Status
+== Status
 
 production
 
-# Dependencies
+== Dependencies
 
 ruby, rubygems, bundler, git, rvm (optional)
 
-# Installation
+== Installation
 
 Install dependencies.
 Clone the git project.
 
-# Setup
+== Setup
 
-$ rake setup
+  $ rake setup
 
-# Build
+== Build
 
-$ rake build
+  $ rake build
 
-# Deploy
+== Deploy
 
-# Release management
+== Release management
 
 gitflow and semantic versioning
 
-# Tests
+== Tests
 
-$ rake test
+  $ rake test
