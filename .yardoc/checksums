@@ -1,0 +1,6 @@
+lib/summit.rb e834272dc880dc776cdee74cadf95cba737c9964
+lib/summit/misc.rb 5bd5b3af1746e063d97b81dfea743ab5b5280634
+lib/summit/misc/version.rb 735ffa0a16eaf0aa5b0ea067252638df6b80d0f3
+lib/summit/misc/configuration.rb 6437b6af481aac4a71d1ec7fbc0219a9bb123e9d
+lib/summit/misc/search_conditions.rb c7c41d751273d7f9f1782ce2bb0d8c13aa1d8f94
+lib/summit/misc/active_record_spec.rb 0cc23c8b2ca953df89a28a0899bc2db9971a712c

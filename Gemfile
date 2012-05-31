@@ -5,5 +5,6 @@ gem 'rake'
 gem 'rspec'
 gem 'rdoc'
 gem 'summit-tools'
+gem 'yard'
 
 gemspec

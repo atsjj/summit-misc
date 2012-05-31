@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    summit-misc (1.4.0)
+    summit-misc (2.0.0)
 
 GEM
   remote: http://summit:Nip4s123@gems.insummit.com/
@@ -36,6 +36,7 @@ GEM
     rspec-mocks (2.7.0)
     summit-tools (1.0.0)
       capistrano
+    yard (0.8.1)
 
 PLATFORMS
   ruby
@@ -46,3 +47,4 @@ DEPENDENCIES
   rspec
   summit-misc!
   summit-tools
+  yard
