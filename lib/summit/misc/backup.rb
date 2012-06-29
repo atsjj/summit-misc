@@ -21,10 +21,7 @@ module Summit
       private
 
       def execute_command(cmd)
-        puts "Executing:"
-        puts "  #{cmd}"
-        rc = Kernel.system cmd
-        puts "Result: #{rc}"
+        Kernel.system cmd
       end
 
       def timestamp
