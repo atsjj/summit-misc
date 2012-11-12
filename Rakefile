@@ -6,16 +6,10 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-require 'rake'
-require 'rdoc/task'
 require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new('spec')
 
-RSpec::Core::RakeTask.new(:test) do |spec|
-  spec.pattern = 'test/*_spec.rb'
-  spec.rspec_opts = ['--backtrace', '--color']
-end
-
-task :default => :test
+task :default => :spec
 
 desc 'Initial project setup'
 task :setup do
