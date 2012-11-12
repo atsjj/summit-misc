@@ -4,7 +4,7 @@ PATH
     summit-misc (2.1.1)
 
 GEM
-  remote: http://summit:Nip4s123@gems.insummit.com/
+  remote: http://gems.insummit.com/
   remote: http://rubygems.org/
   specs:
     capistrano (2.9.0)
