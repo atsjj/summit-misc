@@ -1,4 +1,4 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper")
+require 'spec_helper'
 
 def config_path
   return File.join(File.expand_path(File.dirname(__FILE__)), 'configuration.yaml')
