@@ -18,9 +18,10 @@ module Summit
         execute_command cmd
       end
 
-      private
+      protected
 
       def execute_command(cmd)
+        puts "old execute_command"
         Kernel.system cmd
       end
 
@@ -37,9 +38,13 @@ module Summit
         return "/usr/bin/mysqldump -u #{user} --password=#{password} -h #{host} #{database} | /bin/gzip > #{file}"
       end
 
+      def relative_to_root(path)
+        path[0] == '/' ? path[1..-1] : path
+      end
+
       def cmd_archive_files(path)
         file = filename name, "files", "tgz"
-        return "/bin/tar czf #{file} -C / #{path}"
+        return "/bin/tar czf #{file} -C / #{relative_to_root(path)}"
       end
     end
   end
