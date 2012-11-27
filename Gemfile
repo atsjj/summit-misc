@@ -1,4 +1,4 @@
-source "http://summit:Nip4s123@gems.insummit.com/"
+source "http://gems.insummit.com/"
 source "http://rubygems.org"
 
 gem 'rake'

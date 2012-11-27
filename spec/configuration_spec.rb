@@ -1,4 +1,4 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), "test_helper")
+require 'spec_helper'
 
 def config_path
   return File.join(File.expand_path(File.dirname(__FILE__)), 'configuration.yaml')
@@ -43,14 +43,16 @@ describe Summit::Misc::Configuration do
   describe "#each" do
     it "acts like Hash" do
       enumerator = @config.each
-      enumerator.class.should eq(Enumerable::Enumerator)
+      enumerator.class.should eq(Enumerator)
       [Hash, Array].include?(enumerator.next.class).should == true
     end
   end
 
   describe "#collect" do
     it "acts like Hash" do
-      @config.collect.length.should == 2
+      enumerator = @config.collect
+      enumerator.class.should eq(Enumerator)
+      [Hash, Array].include?(enumerator.next.class).should == true
     end
   end
 
