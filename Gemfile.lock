@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    summit-misc (2.2.0)
+    summit-misc (2.2.1)
 
 GEM
   remote: http://gems.insummit.com/

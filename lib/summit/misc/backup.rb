@@ -21,7 +21,6 @@ module Summit
       protected
 
       def execute_command(cmd)
-        puts "old execute_command"
         Kernel.system cmd
       end
 
